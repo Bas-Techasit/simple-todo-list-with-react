@@ -1,11 +1,12 @@
 import ItemList from "./ItemList";
 
-function Content({Items, setItem}) {
+function Content({items, setItem}) {
 
     return (
         <div>
+           
             <ItemList 
-                Items = {Items} 
+                items = {items} 
                 setItem = {setItem}
             />
         </div>

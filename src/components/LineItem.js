@@ -1,20 +1,20 @@
 
 
-function LineItem({ id, content, isChecked, handleOnChange, handleDelete}) {
+function LineItem({ item, handleOnChange, handleDelete}) {
 
     return (
         <div>
             <input 
                 type="checkbox"
-                id={`item-${id}`}
-                checked={isChecked}
-                onChange = {() => handleOnChange(id)}
+                id={`item-${item.id}`}
+                checked={item.isChecked}
+                onChange = {() => handleOnChange(item.id)}
             />
-            <label htmlFor={`item-${id}`}>{content}</label>
+            <label htmlFor={`item-${item.id}`}>{item.body}</label>
             <button 
-                htmlFor={`item-${id}`} 
+                htmlFor={`item-${item.id}`} 
                 type="submit" 
-                onClick={() => handleDelete(id)}
+                onClick={() => handleDelete(item.id) }
                 > Delete </button>
         </div>
     )

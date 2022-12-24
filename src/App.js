@@ -3,39 +3,38 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Content from './components/Content';
 import Footer from './components/Footer';
+import AddItemFrom from './components/AddItemForm';
 
 function App() {
-  const [ Items, setItem ] = useState([
-    {
-      'id': 1,
-      'isChecked': false,
-      'content': 'item 1'
-    },
-    {
-      'id': 2,
-      'isChecked': false,
-      'content': 'item 2'
-    },
-    {
-      'id': 3,
-      'isChecked': false,
-      'content': 'item 3'
-    }
-  ]);
+  const [items, setItem] = useState([]);
 
-  // create add item to the list.
+  const [ newItem, setNewItem] = useState();
 
+function handleSubmit(event) {
+    event.preventDefault();
+    if (!newItem) return;
+    addItem(newItem);
+    setNewItem('');
+}
 
-  // create delete item to the list.
+function addItem(item) {
+  const id = items.length ? items[items.length -1].id +1 : 1;
+  const myNewItem = { 'id': id, 'isChecked': false, 'body': item}
+  const listItem = [...items, myNewItem];
+  setItem(listItem);
+}
 
   return (
     <div className="App">
-      <Header />
-      <Content 
-        Items = {Items}
-        setItem = {setItem}
+
+      <Header items={items} setItem={setItem} />
+      <AddItemFrom
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmit={handleSubmit}
       />
-      <Footer />
+      <Content items={items} setItem={setItem} />
+      <Footer items={items}/>
     </div>
   );
 }

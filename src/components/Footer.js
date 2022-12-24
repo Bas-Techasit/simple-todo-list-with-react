@@ -1,10 +1,11 @@
+import ItemList from "./ItemList";
 
 
-function Footer() {
+function Footer({items}) {
 
     return (
         <div>
-            <h1>Footer</h1>
+            <p>{items.length} List item{items.length > 1 ? "s" : ""}</p>
         </div>
     );
 }
